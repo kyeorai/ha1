@@ -90,5 +90,39 @@ class CalculatorTest {
 
 
     //TODO hier weitere Tests erstellen
-}
 
+    @Test
+    @DisplayName("should multiply two numbers")
+    void testMultiplication() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        assertEquals("12", calc.readScreen());
+
+    }
+    @Test
+    @DisplayName("should not change value when equals pressed without operation")
+    void testEqualsWithoutOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        assertEquals("5", calc.readScreen());
+    }
+    @Test
+    @DisplayName("should toggle negative sign correctly")
+    void testNegativeToggle() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressNegativeKey();
+        calc.pressNegativeKey();
+
+        assertEquals("7", calc.readScreen());
+    }
+}
